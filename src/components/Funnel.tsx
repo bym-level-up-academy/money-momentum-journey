@@ -100,20 +100,11 @@ function WhatsAppButton() {
   return <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="funnel-btn block text-center">JE REJOINS LE CANAL PRIVE</a>;
 }
 
-function Scroll() {
-  return (
-    <button type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="funnel-btn mx-auto block max-w-lg">
-      JE REJOINS LE CANAL PRIVE
-    </button>
-  );
-}
-
 export function LandingPage() {
   return (
     <main className="funnel-page">
       <Header last="Et tu as envie de devenir LIBRE financièrement" />
       <LeadForm />
-      <Body cta={<Scroll />} />
     </main>
   );
 }
