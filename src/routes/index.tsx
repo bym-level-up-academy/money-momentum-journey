@@ -1,24 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { LandingPage } from "@/components/Funnel";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Boost Your Money — Le canal privé WhatsApp" },
+      { name: "description", content: "Le canal privé qui va faire exploser ton argent, même si tu pars de zéro. Accès 100% gratuit." },
+      { property: "og:title", content: "Boost Your Money — Le canal privé WhatsApp" },
+      { property: "og:description", content: "Crypto sans jargon, bons plans et pépites d'investissement. Accès 100% gratuit." },
+    ],
+  }),
+  component: LandingPage,
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
