@@ -63,14 +63,14 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --background: oklch(0.965 0.016 60);
+  --foreground: oklch(0.15 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.63 0.08 170);
+  --primary-foreground: oklch(0.99 0 0);
   --secondary: oklch(0.968 0.007 247.896);
   --secondary-foreground: oklch(0.208 0.042 265.755);
   --muted: oklch(0.968 0.007 247.896);
@@ -141,4 +141,13 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
+}
+
+@layer components {
+  body { font-family: "Roboto", system-ui, sans-serif; }
+  .funnel-page { @apply mx-auto max-w-3xl px-5 py-10; }
+  .funnel-title { @apply text-center text-2xl font-bold leading-snug text-foreground md:text-4xl; }
+  .funnel-text { @apply text-lg text-foreground md:text-2xl; }
+  .funnel-input { @apply w-full rounded-md border border-input bg-card px-4 py-3 text-base text-foreground outline-none focus:ring-2 focus:ring-ring; }
+  .funnel-btn { @apply w-full rounded-2xl bg-primary px-6 py-4 text-lg font-bold tracking-wide text-primary-foreground shadow-md transition hover:brightness-95 disabled:opacity-60 md:text-2xl; }
 }

@@ -10,33 +10,54 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as Aa0c78289ddb8ffba9ab2aa5e82a2841RouteImport } from './routes/aa0c78289ddb8ffba9ab2aa5e82a2841'
+import { Route as CashRouteImport } from './routes/cash'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Aa0c78289ddb8ffba9ab2aa5e82a2841Route =
+  Aa0c78289ddb8ffba9ab2aa5e82a2841RouteImport.update({
+    id: '/aa0c78289ddb8ffba9ab2aa5e82a2841',
+    path: '/aa0c78289ddb8ffba9ab2aa5e82a2841',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CashRoute = CashRouteImport.update({
+  id: '/cash',
+  path: '/cash',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/aa0c78289ddb8ffba9ab2aa5e82a2841': typeof Aa0c78289ddb8ffba9ab2aa5e82a2841Route
+  '/cash': typeof CashRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/aa0c78289ddb8ffba9ab2aa5e82a2841': typeof Aa0c78289ddb8ffba9ab2aa5e82a2841Route
+  '/cash': typeof CashRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/aa0c78289ddb8ffba9ab2aa5e82a2841': typeof Aa0c78289ddb8ffba9ab2aa5e82a2841Route
+  '/cash': typeof CashRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/aa0c78289ddb8ffba9ab2aa5e82a2841' | '/cash'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/aa0c78289ddb8ffba9ab2aa5e82a2841' | '/cash'
+  id: '__root__' | '/' | '/aa0c78289ddb8ffba9ab2aa5e82a2841' | '/cash'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  Aa0c78289ddb8ffba9ab2aa5e82a2841Route: typeof Aa0c78289ddb8ffba9ab2aa5e82a2841Route
+  CashRoute: typeof CashRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +69,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/aa0c78289ddb8ffba9ab2aa5e82a2841': {
+      id: '/aa0c78289ddb8ffba9ab2aa5e82a2841'
+      path: '/aa0c78289ddb8ffba9ab2aa5e82a2841'
+      fullPath: '/aa0c78289ddb8ffba9ab2aa5e82a2841'
+      preLoaderRoute: typeof Aa0c78289ddb8ffba9ab2aa5e82a2841RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cash': {
+      id: '/cash'
+      path: '/cash'
+      fullPath: '/cash'
+      preLoaderRoute: typeof CashRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  Aa0c78289ddb8ffba9ab2aa5e82a2841Route: Aa0c78289ddb8ffba9ab2aa5e82a2841Route,
+  CashRoute: CashRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
