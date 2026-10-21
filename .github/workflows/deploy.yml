@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -27,25 +27,29 @@ jobs:
       - name: Installer les dépendances
         run: bun install --frozen-lockfile
 
-      # GH_PAGES_BASE = le chemin où le site est servi :
-      # "/" pour un nom de domaine perso ou user.github.io (site d'utilisateur),
-      # "/nom-du-depot/" pour une adresse du type user.github.io/nom-du-depot.
       - name: Construire le site statique
         env:
           GH_PAGES_BASE: ${{ vars.GH_PAGES_BASE || '/' }}
         run: bun run build
 
-      # GitHub Pages ne connaît pas les URL de l'application : toute adresse
-      # inconnue (/cash, la page de remerciement…) reçoit ce fichier, puis
-      # l'application affiche la bonne page.
-      - name: Fallback 404
+      - name: Préparer les fichiers pour GitHub Pages
         run: |
           OUT_DIR=$([ -d ".output/public" ] && echo ".output/public" || echo "dist/client")
+          echo "Dossier source détecté : $OUT_DIR"
+          
+          # Fallback pour le routage SPA (cash, remerciements)
           cp "$OUT_DIR/index.html" "$OUT_DIR/404.html"
+          
+          # Désactiver Jekyll pour conserver tous les fichiers générés
+          touch "$OUT_DIR/.nojekyll"
+          
+          # Dossier unifié pour l'étape d'upload
+          mkdir -p public_site
+          cp -r "$OUT_DIR"/* public_site/
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist/client
+          path: public_site
 
   deploy:
     needs: build
@@ -56,3 +60,4 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
