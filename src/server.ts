@@ -49,15 +49,6 @@ export default {
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
-      console.log(
-        "[ssr-debug]",
-        request.method,
-        request.url,
-        "->",
-        response.status,
-        "loc:",
-        response.headers.get("location"),
-      );
       return await normalizeCatastrophicSsrResponse(response);
     } catch (error) {
       console.error(error);
