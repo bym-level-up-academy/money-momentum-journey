@@ -39,7 +39,9 @@ jobs:
       # inconnue (/cash, la page de remerciement…) reçoit ce fichier, puis
       # l'application affiche la bonne page.
       - name: Fallback 404
-        run: cp dist/client/index.html dist/client/404.html
+        run: |
+          OUT_DIR=$([ -d ".output/public" ] && echo ".output/public" || echo "dist/client")
+          cp "$OUT_DIR/index.html" "$OUT_DIR/404.html"
 
       - uses: actions/upload-pages-artifact@v3
         with:
