@@ -28,6 +28,7 @@ export default defineConfig({
     server: { entry: "server" },
     ...(staticBuild
       ? {
+          spa: { enabled: true, maskPath: "/" },
           pages: STATIC_PAGES,
           prerender: { enabled: true, autoStaticPathsDiscovery: false },
         }
