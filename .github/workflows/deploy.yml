@@ -1,0 +1,56 @@
+name: Déployer sur GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Installer les dépendances
+        run: bun install --frozen-lockfile
+
+      # GH_PAGES_BASE = le chemin où le site est servi :
+      # "/" pour un nom de domaine perso ou user.github.io (site d'utilisateur),
+      # "/nom-du-depot/" pour une adresse du type user.github.io/nom-du-depot.
+      - name: Construire le site statique
+        env:
+          GH_PAGES_BASE: ${{ vars.GH_PAGES_BASE || '/' }}
+        run: bun run build
+
+      # GitHub Pages ne connaît pas les URL de l'application : toute adresse
+      # inconnue (/cash, la page de remerciement…) reçoit ce fichier, puis
+      # l'application affiche la bonne page.
+      - name: Fallback 404
+        run: cp dist/client/index.html dist/client/404.html
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/client
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
