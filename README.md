@@ -1,14 +1,19 @@
-# Welcome to your Lovable project
+# Money Momentum Journey
+
+peux tu cloner ce site stp il faut aussi que je le demenage avant minuit de metaforma https://boostyourmoney.metaforma.io/cash la page de remerciement apres envoie du formulaire est celle ci : 
+https://boostyourmoney.metaforma.io/aa0c78289ddb8ffba9ab2aa5e82a2841
 
 This project was built with [Lovable](https://lovable.dev).
 
+**Live app**: https://money-momentum-journey.lovable.app
+
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/012993e7-f3ed-4b2d-ad4e-114817b07c15).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +25,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
