@@ -10,6 +10,10 @@ export const getRouter = () => {
     context: { queryClient },
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,
+    // Static hosts (GitHub Pages) serve a page as <folder>/index.html, so the
+    // canonical URL keeps its trailing slash and the build-time render of
+    // "/cash/" is served directly instead of being redirected.
+    trailingSlashOption: "always",
   });
 
   return router;
