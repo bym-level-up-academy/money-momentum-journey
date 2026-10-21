@@ -11,7 +11,7 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 // GH_PAGES_BASE (the path the site is served from: "/" for a custom domain or
 // user.github.io/repo, "/repo/" otherwise). Lovable's own publish build leaves
 // it unset and keeps server rendering.
-const pagesBase = process.env.GH_PAGES_BASE;
+const pagesBase = process.env["GH_PAGES_BASE"];
 const staticBuild = pagesBase !== undefined;
 
 const STATIC_PAGES = [
